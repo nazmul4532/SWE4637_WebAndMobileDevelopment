@@ -1,0 +1,61 @@
+#datepicker1,
+#datepicker2 {
+  margin-top: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+#datepicker2 {
+  clear: left;
+}
+
+.month-header{  
+    display: flex;
+    justify-content: space-around; 
+    align-items: center;
+}
+
+.days-header {
+  display: flex;
+  justify-content: space-around; 
+  align-items: center;
+}
+
+.days-header div {
+  flex: 1;
+  text-align: center;
+  padding: 5px;
+  color: #aaa;
+}
+
+.current-month-day {
+  flex: 1;
+  text-align: center;
+  padding: 5px;
+  cursor: pointer;
+  background-color: #4CAF50; 
+  color: #fff; 
+}
+
+.current-month-day:hover {
+    background-color: #3498db;
+  }
+  
+  .current-month-day.selected {
+    background-color: #006003;
+    color: #fff;
+  }
+
+.week {
+  display: flex;
+}
+
+.other-month-day {
+  flex: 1;
+  text-align: center;
+  padding: 5px;
+  background-color: #fff;
+  cursor: not-allowed;
+  color: #aaa; 
+}
