@@ -107,8 +107,8 @@ const TakeQuizPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         try {
-            const storedQuizzes = JSON.parse(localStorage.getItem('quizzes')) || [];
-            const newQuizData = { ...quiz };
+            const storedQuizzes = JSON.parse(localStorage.getItem('quizzes')) || {};
+            const newQuizData = storedQuizzes[quiz._id] || { ...quiz };
             
             const currentScore = answers.reduce((acc, answer, index) => {
                 if (quiz.questions[index].correctAnswer === answer) {
@@ -121,13 +121,22 @@ const TakeQuizPage = () => {
                 newQuizData.highestScore = currentScore;
             }
             newQuizData.taken = true;
+
+            newQuizData.totalQuestions = quiz.questions.length;
     
             if (storedQuizzes.length === 0) {
                 localStorage.setItem('quizzes', JSON.stringify([newQuizData]));
             } else {
-                const updatedQuizzes = storedQuizzes.map(q => q.name === newQuizData.name ? newQuizData : q);
-                localStorage.setItem('quizzes', JSON.stringify(updatedQuizzes));
+                const existingQuiz = storedQuizzes[newQuizData._id];
+                if (existingQuiz) {
+                    storedQuizzes[newQuizData._id] = newQuizData;
+                    localStorage.setItem('quizzes', JSON.stringify(storedQuizzes));
+                } else {
+                    storedQuizzes[newQuizData._id] = newQuizData;
+                    localStorage.setItem('quizzes', JSON.stringify(storedQuizzes));
+                }
             }
+            
             
             setSubmitted(true);
             setQuestionTimers(questionTimers.map(() => 0));

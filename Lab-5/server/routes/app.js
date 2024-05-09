@@ -9,7 +9,8 @@ router.get('/', (req, res) => {
 
 router.post('/create-quiz', quizController.createQuiz);
 router.get('/getQuiz/:quizId', quizController.getQuiz);
-router.get('/getQuizzes',quizController.getQuizzes);
+router.get('/getQuizzes', quizController.getQuizzes);
+router.get('/getQuizzesTotal', quizController.getQuizzesTotal);
 
 
 module.exports = router;
